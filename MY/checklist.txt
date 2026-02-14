@@ -1,0 +1,130 @@
+Task: 
+
+a) Train a sequence tagging model that uses the Bahdanau attention mechanism to improve context modeling for BIO prediction.
+
+b) Use this mechanism to build an attention-based tagger for BIO sequence labeling.
+
+c) Must implement the Bahdanau attention mechanism yourself as a PyTorch module named BahdanauAttention
+
+d) Choose any one pretrained embedding of your choice (GloVe/fastText) 
+
+e) Using your chosen embedding, you must train a BiLSTM + Bahdanau Attention model for BIO prediction.
+
+f) Experiment with different model depths by training models with the number of stacked BiLSTM layers, L ∈{1, 2, 3} (or more if you wish, but at least three settings must be compared)
+
+g) Report: chosen embedding, hyperparameters used for training, training and validation plots, in-depth analysis of results discussing how attention and model depth affect performance.
+
+h) Deliverables: 
+
+Implementation (complete implementation for preprocessing, model training, evaluation in part3.ipynb); 
+
+Best-performing model (saved checkpoint/weights of your best-performing configuration and pecify the chosen embedding and number of layers it corresponds to with proper name like "best_attn_fasttext_L3.pt" ensuring it can be loaded by part3.ipynb for infrence
+
+Detailed report: 
+
+a) a short description of your BiLSTM+Bahdanau-Attention architecture, training
+setup, any preprocessing steps, and the full list of hyperparameters used,
+(b) training and validation plots (loss curves and/or metric curves) for all experi-
+ments,
+(c) a complete results table reporting FreeMatch-F1 and Strict EM for all layer set-
+tings (L ∈ {1, 2, 3}) using your chosen embedding, also attach the screenshot of
+the EM and FreeMatch-F1 score for the best performing model.
+(d) an in-depth analysis discussing the effect of attention and increasing depth, and
+explaining any differences in trends between FreeMatch-F1 and Strict EM.
+5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q3 — Exact Requirements (Nothing More, Nothing Less)
+
+1 Model
+
+    1.1 Use a BiLSTM-based sequence tagging model
+    1.2 Incorporate Bahdanau (additive) attention
+    1.3 Implement Bahdanau attention yourself
+    1.4 Do not use a ready-made attention module
+
+2 Embeddings
+
+    2.1 Choose one pretrained embedding to use in the model:
+        a GloVe
+        b fastText
+    2.2 Mention the chosen embedding in the report
+
+3 Experiments
+
+    3.1 Train models with different BiLSTM depths (at leats L=1 to L=3)
+
+4 Evaluation
+
+    4.1 Evaluate each trained model using:
+        a FreeMatch-F1
+        b Strict Exact Match (EM)
+    4.2 Exclude padded tokens from evaluation
+    4.3 Summarize results in a table:
+        a Rows -> L values
+        b Columns -> FreeMatch-F1, Strict EM
+
+5 Analysis
+
+    5.1 Discuss how attention affects performance
+    5.2 Discuss how model depth affects performance
+    5.3 Explain differences between FreeMatch-F1 and Strict EM
+
+6 Inference (Required for Grading)
+
+    6.1 Implement code that:
+        6.1.1 Reads 'test_data.jsonl'
+        6.1.2 Runs the best-trained model
+        6.1.3 Writes predictions to 'output.jsonl'
+
+    6.2 'output.jsonl' must match dataset format exactly:
+        a `id`
+        b `tokens`
+        c `labels`
+
+
+7 Deliverables (Q3)
+
+    7.1 One file part3.py/ipynb
+    7.2 Saved checkpoint of the best-performing model
+    7.3 Checkpoint must be loadable by the code
+
+8 Report:
+
+    8.1 Architecture description
+    8.2 Hypeŕ hyperparameters
+    8.3 Plots
+    8.4 Results table
+    8.5 Analysis

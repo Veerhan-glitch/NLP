@@ -1,0 +1,101 @@
+ver _ invalid (_) - fixed (_) - changed (_)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | fastText (300d, `cc.en.300.vec`)           |
+| 2     | Embedding training        | Trainable (fine-tuned)                     |
+| 3     | Vocabulary                | Built from training set tokens only        |
+| 4     | Encoder                   | BiLSTM                                     |
+| 5     | Attention                 | Bahdanau (additive, custom implementation) |
+| 6     | Attention scope           | Global sentence-level context              |
+| 7     | Layers                    | L ∈ {1, 2, 3}                              |
+| 8     | Hidden size               | 256                                        |
+| 9     | Dropout                   | 0.1                                        |
+| 10    | Optimizer                 | Adam                                       |
+| 11    | Learning rate             | 1e-3                                       |
+| 12    | Batch size                | 32                                         |
+| 13    | Loss function             | Weighted Cross-Entropy (padding ignored,   |
+|       |                           |                           class-balanced)  |
+| 14    | Evaluation metric         | Token accuracy (debug-only)                |
+| 15    | Required metrics          | FreeMatch-F1, Strict Exact Match (EM)      |
+| 16    | Model selection criterion | Strict EM on validation set                |
+| 17    | Inference on test set     | Implemented                                |
+| 18    | Output file               | `output.jsonl` generated                   |
+| 19    | Assignment validity       | Early stopping on validation FreeMatch-F1  |
+|       |                           |               (patience=3)                 |
+| 20    | Assignment validity       | ✅ Valid                                   |
+
+
+ver 7 changed (9) - added (20)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | fastText (300d, `cc.en.300.vec`)           |
+| 9     | Dropout                   | 0.1                                        |
+| 19    | Assignment validity       | Early stopping on validation FreeMatch-F1  |
+|       |                           |               (patience=3)                 |
+| 20    | Assignment validity       | ✅ Valid                                   |
+
+
+ver 6 changed (2,13)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | fastText (300d, `cc.en.300.vec`)           |
+| 2     | Embedding training        | Trainable (fine-tuned)                     |
+| 13    | Loss function             | Weighted Cross-Entropy (padding ignored,   |
+|       |                           |                           class-balanced)  |
+| 20    | Assignment validity       | ✅ Valid                                   |
+
+
+ver 5 changed (1)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | fastText (300d, `cc.en.300.vec`)           |
+| 20    | Assignment validity       | ✅ Valid                                   |
+
+
+ver 4 fixed (17, 18)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | GloVe (300d, `glove.6B.300d.txt`)          |
+| 17    | Inference on test set     | Implemented                                |
+| 18    | Output file               | `output.jsonl` generated                   |
+| 20    | Assignment validity       | ✅ Valid                                   |
+
+
+ver 3 invalid (17, 18) - changed (1)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | GloVe (300d, `glove.6B.300d.txt`)          |
+| 20    | Assignment validity       | ❌ Invalid                                 |
+
+
+ver 2 invalid (17, 18) - fixed (15) - changed (16)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | fastText (300d, `cc.en.300.vec`)           |
+| 15    | Required metrics          | FreeMatch-F1, Strict Exact Match (EM)      |
+| 16    | Model selection criterion | Strict EM on validation set                |
+| 20    | Assignment validity       | ❌ Invalid                                 |
+
+
+ver 1 invalid (15, 17, 18)
+| S.No. | Component                 | Choice / Status                            |
+| ----- | ------------------------- | ------------------------------------------ |
+| 1     | Embedding                 | fastText (300d, `cc.en.300.vec`)           |
+| 2     | Embedding training        | Frozen (`requires_grad = False`)           |
+| 3     | Vocabulary                | Built from training set tokens only        |
+| 4     | Encoder                   | BiLSTM                                     |
+| 5     | Attention                 | Bahdanau (additive, custom implementation) |
+| 6     | Attention scope           | Global sentence-level context              |
+| 7     | Layers                    | L ∈ {1, 2, 3}                              |
+| 8     | Hidden size               | 256                                        |
+| 9     | Dropout                   | 0.3                                        |
+| 10    | Optimizer                 | Adam                                       |
+| 11    | Learning rate             | 1e-3                                       |
+| 12    | Batch size                | 32                                         |
+| 13    | Loss function             | Cross-Entropy (padding ignored)            |
+| 14    | Evaluation metric         | Token accuracy (debug-only)                |
+| 15    | Required metrics          | ❌ FreeMatch-F1, Strict EM missing         |
+| 16    | Model selection criterion | Token accuracy                             |
+| 17    | Inference on test set     | ❌ Not implemented                         |
+| 18    | Output file               | ❌ `output.jsonl` not generated            |
+| 20    | Assignment validity       | ❌ Invalid                                 |

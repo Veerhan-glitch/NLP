@@ -1,0 +1,105 @@
+fastText
+
+wget https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.en.300.vec.gz
+gunzip cc.en.300.vec.gz
+
+
+
+
+GloVe
+
+wget https://nlp.stanford.edu/data/glove.6B.zip
+unzip glove.6B.zip
+
+
+loss used: 
+
+from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence : speedup
+
+
+model.embedding.weight.data.copy_(vectors)
+model.embedding.weight.requires_grad = False  : speedup
+
+
+
+train_loader = DataLoader(
+    train_ds,
+    BATCH_SIZE,
+    shuffle=True,
+    collate_fn=collate_fn,
+    num_workers=2,
+    pin_memory=True,
+)
+
+val_loader = DataLoader(
+    val_ds,
+    BATCH_SIZE,
+    collate_fn=collate_fn,
+    num_workers=2,
+    pin_memory=True,
+)
+
+: speedup
+
+
+HIDDEN_SIZE = 128 : speedup (was 256 before)
+
+ran on 3:29 till 3:29
+
+
+
+
+before speed up ran 25 min gave:
+
+.venv) [psc@psc NLP]$ /home/psc/Desktop/Sem6/NLP/NLP/.venv/bin/python /home/psc/Desktop/Sem6/NLP/NLP/Q3/part3.py
+/home/psc/Desktop/Sem6/NLP/NLP/.venv/lib/python3.14/site-packages/torch/cuda/__init__.py:184: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+Device: cpu
+
+Select mode:
+  1 → Train
+  2 → Test (use best saved model by default)
+Enter choice (1/2): 1
+[fastText] Found 19467/10068 embeddings
+
+Training with L=1
+L=1 | ep=0 | loss=0.596 | F1=0.473 | EM=0.179
+L=1 | ep=1 | loss=0.257 | F1=0.627 | EM=0.256
+L=1 | ep=2 | loss=0.187 | F1=0.675 | EM=0.334
+L=1 | ep=3 | loss=0.144 | F1=0.653 | EM=0.303
+L=1 | ep=4 | loss=0.113 | F1=0.677 | EM=0.378
+L=1 | ep=5 | loss=0.086 | F1=0.662 | EM=0.350
+L=1 | ep=6 | loss=0.075 | F1=0.688 | EM=0.397
+L=1 | ep=7 | loss=0.060 | F1=0.662 | EM=0.354
+L=1 | ep=8 | loss=0.051 | F1=0.669 | EM=0.373
+L=1 | ep=9 | loss=0.046 | F1=0.674 | EM=0.384
+
+Training with L=2
+L=2 | ep=0 | loss=0.596 | F1=0.469 | EM=0.145
+L=2 | ep=1 | loss=0.258 | F1=0.632 | EM=0.261
+L=2 | ep=2 | loss=0.183 | F1=0.672 | EM=0.338
+L=2 | ep=3 | loss=0.145 | F1=0.667 | EM=0.359
+L=2 | ep=4 | loss=0.110 | F1=0.669 | EM=0.356
+L=2 | ep=5 | loss=0.090 | F1=0.654 | EM=0.340
+L=2 | ep=6 | loss=0.070 | F1=0.663 | EM=0.346
+L=2 | ep=7 | loss=0.062 | F1=0.687 | EM=0.406
+L=2 | ep=8 | loss=0.056 | F1=0.677 | EM=0.392
+L=2 | ep=9 | loss=0.051 | F1=0.671 | EM=0.366
+
+Training with L=3
+L=3 | ep=0 | loss=0.625 | F1=0.500 | EM=0.228
+L=3 | ep=1 | loss=0.278 | F1=0.607 | EM=0.240
+L=3 | ep=2 | loss=0.192 | F1=0.640 | EM=0.325
+L=3 | ep=3 | loss=0.150 | F1=0.653 | EM=0.324
+L=3 | ep=4 | loss=0.124 | F1=0.657 | EM=0.351
+L=3 | ep=5 | loss=0.097 | F1=0.661 | EM=0.344
+L=3 | ep=6 | loss=0.080 | F1=0.654 | EM=0.351
+L=3 | ep=7 | loss=0.072 | F1=0.681 | EM=0.381
+L=3 | ep=8 | loss=0.061 | F1=0.675 | EM=0.346
+L=3 | ep=9 | loss=0.055 | F1=0.653 | EM=0.343
+Best EM: 0.383601756954612
+(.venv) [psc@psc NLP]$ 
+
+
+
+
